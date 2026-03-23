@@ -2,15 +2,14 @@
     <x-slot:title>
         Welcome
     </x-slot:title>
-    <div class="max-w-2xl mx-auto">
-        <div class="card bg-base-100 shadow mt-8">
+    @foreach ($chirps as $chirp)
+        <div class="card bg-base-100 shadow mt-4">
             <div class="card-body">
-                <div>
-                    <h1 class="text-3xl font-bold">Welcome to Chirper!</h1>
-                    <p class="mt-4 text-base-content/60">This is your brand new Laravel application. Time to make it
-                        sing (or chirp)!</p>
+                <p>{{ $chirp['message'] }}</p>
+                <div class="text-sm text-base-content/60 mt-2">
+                    Posted by {{ $chirp['author'] }} on {{ $chirp['time'] }}
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 </x-layout>
