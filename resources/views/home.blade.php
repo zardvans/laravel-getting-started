@@ -2,14 +2,17 @@
     <x-slot:title>
         Welcome
     </x-slot:title>
-    @foreach ($chirps as $chirp)
-        <div class="card bg-base-100 shadow mt-4">
+    @forelse ($chirps as $chirp)
+        <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
-                <p>{{ $chirp['message'] }}</p>
-                <div class="text-sm text-base-content/60 mt-2">
-                    Posted by {{ $chirp['author'] }} on {{ $chirp['time'] }}
+                <div>
+                    <div class="font-semibold">{{ $chirp->user ? $chirp->user->name : 'Anonymous' }}</div>
+                    <div class="mt-1">{{ $chirp->message }}</div>
+                    <div class="text-sm text-gray-50 mt-2">{{ $chirp->created_at->diffForHumans() }}</div>
                 </div>
             </div>
         </div>
-    @endforeach
+    @empty
+        <p class="text-gray-500">No chirps available. Be the first to chirp!</p>
+    @endforelse
 </x-layout>
