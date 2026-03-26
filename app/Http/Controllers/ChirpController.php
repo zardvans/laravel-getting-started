@@ -32,6 +32,9 @@ class ChirpController extends Controller
     {
         $validated = $request->validate([
             'message' => 'required|string|min:5|max:255',
+        ], [
+            "message.required" => "Please write something to chirp.",
+            "message.max" => "Chirps must be 255 characters or less.",
         ]); 
 
         Chirp::create([
